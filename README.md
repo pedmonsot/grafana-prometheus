@@ -36,19 +36,23 @@ En esta segunda parte de la práctica configuramos una monitorización remota en
 
 Al principio nos encontramos con un error al intentar scrapear las métricas de **Node Exporter** desde **Prometheus**. El *endpoint* estaba mal configurado, apuntando a `localhost:9100`, lo cual no tenía sentido porque **Node Exporter** estaba corriendo en una máquina remota. Esto hacía que Prometheus no pudiera recoger los datos y marcara el servicio como "DOWN".  
 
-[imagen 1]
+![2025-05-27_19-19](https://github.com/user-attachments/assets/775a6814-5f7a-4ca2-bf89-768c716d9704)
+
 
 Una vez que corregimos la URL y pusimos la IP correcta del servidor `http://192.168.1.175:9100`, Prometheus ya fue capaz de comunicarse con Node Exporter, y cambió el estado a "UP". Ahora sí estaba recogiendo las métricas correctamente.  
 
-[imagen 2]
+![2025-05-27_19-20](https://github.com/user-attachments/assets/ca8f5ecc-9dbc-4044-a370-f1cdc4ab77ef)
+
 
 También verificamos manualmente que **Node Exporter** estaba funcionando accediendo directamente al puerto `9100` desde el navegador. Vimos la interfaz típica con los enlaces a `/metrics` y perfiles de CPU y memoria, lo cual confirmaba que estaba sirviendo datos.  
 
-[imagen 3]
+![2025-05-27_19-49](https://github.com/user-attachments/assets/c3a0d114-ef30-4c76-b8c1-5fb304ed678b)
+
 
 Finalmente, abrimos **Grafana** y configuramos correctamente la fuente de datos de Prometheus. Mostrándose los gráficos en tiempo real. Se podía ver claramente el uso de **CPU**, **RAM**, **disco**, **tráfico de red** y otros recursos del servidor.  
 
-[imagen 4]
+![2025-05-27_19-58](https://github.com/user-attachments/assets/0b129686-4531-4752-a1a9-35e411c643b7)
+
 
 ---
 
